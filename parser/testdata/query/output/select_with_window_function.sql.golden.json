@@ -1,0 +1,387 @@
+[
+  {
+    "SelectPos": 0,
+    "StatementEnd": 508,
+    "With": null,
+    "Top": null,
+    "HasDistinct": false,
+    "DistinctOn": null,
+    "SelectItems": [
+      {
+        "Expr": {
+          "Name": "aggregation_target",
+          "QuoteType": 1,
+          "NamePos": 7,
+          "NameEnd": 25
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "aggregation_target",
+          "QuoteType": 1,
+          "NamePos": 29,
+          "NameEnd": 47
+        }
+      },
+      {
+        "Expr": {
+          "Name": "timestamp",
+          "QuoteType": 1,
+          "NamePos": 53,
+          "NameEnd": 62
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "timestamp",
+          "QuoteType": 1,
+          "NamePos": 66,
+          "NameEnd": 75
+        }
+      },
+      {
+        "Expr": {
+          "Name": "step_0",
+          "QuoteType": 1,
+          "NamePos": 81,
+          "NameEnd": 87
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "step_0",
+          "QuoteType": 1,
+          "NamePos": 91,
+          "NameEnd": 97
+        }
+      },
+      {
+        "Expr": {
+          "Name": "latest_0",
+          "QuoteType": 1,
+          "NamePos": 103,
+          "NameEnd": 111
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "latest_0",
+          "QuoteType": 1,
+          "NamePos": 115,
+          "NameEnd": 123
+        }
+      },
+      {
+        "Expr": {
+          "Name": "step_1",
+          "QuoteType": 1,
+          "NamePos": 129,
+          "NameEnd": 135
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "step_1",
+          "QuoteType": 1,
+          "NamePos": 139,
+          "NameEnd": 145
+        }
+      },
+      {
+        "Expr": {
+          "Name": "latest_1",
+          "QuoteType": 1,
+          "NamePos": 151,
+          "NameEnd": 159
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "latest_1",
+          "QuoteType": 1,
+          "NamePos": 163,
+          "NameEnd": 171
+        }
+      },
+      {
+        "Expr": {
+          "Name": "step_2",
+          "QuoteType": 1,
+          "NamePos": 177,
+          "NameEnd": 183
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "step_2",
+          "QuoteType": 1,
+          "NamePos": 187,
+          "NameEnd": 193
+        }
+      },
+      {
+        "Expr": {
+          "Function": {
+            "Name": {
+              "Name": "min",
+              "QuoteType": 1,
+              "NamePos": 199,
+              "NameEnd": 202
+            },
+            "Params": {
+              "LeftParenPos": 202,
+              "RightParenPos": 211,
+              "Items": {
+                "ListPos": 203,
+                "ListEnd": 211,
+                "HasDistinct": false,
+                "Items": [
+                  {
+                    "Expr": {
+                      "Name": "latest_2",
+                      "QuoteType": 1,
+                      "NamePos": 203,
+                      "NameEnd": 211
+                    },
+                    "Alias": null
+                  }
+                ]
+              },
+              "ColumnArgList": null
+            }
+          },
+          "OverPos": 213,
+          "OverExpr": {
+            "LeftParenPos": 218,
+            "RightParenPos": 327,
+            "PartitionBy": {
+              "PartitionPos": 218,
+              "Expr": {
+                "ListPos": 232,
+                "ListEnd": 250,
+                "HasDistinct": false,
+                "Items": [
+                  {
+                    "Expr": {
+                      "Name": "aggregation_target",
+                      "QuoteType": 1,
+                      "NamePos": 232,
+                      "NameEnd": 250
+                    },
+                    "Alias": null
+                  }
+                ]
+              }
+            },
+            "OrderBy": {
+              "OrderPos": 255,
+              "ListEnd": 273,
+              "Items": [
+                {
+                  "OrderPos": 255,
+                  "Expr": {
+                    "Name": "timestamp",
+                    "QuoteType": 1,
+                    "NamePos": 264,
+                    "NameEnd": 273
+                  },
+                  "Alias": null,
+                  "Direction": "DESC",
+                  "Fill": null
+                }
+              ],
+              "Interpolate": null
+            },
+            "Frame": {
+              "FramePos": 279,
+              "Type": "ROWS",
+              "Extend": {
+                "Expr": null,
+                "Between": {
+                  "UnboundedPos": 292,
+                  "UnboundedEnd": 0,
+                  "Direction": "PRECEDING"
+                },
+                "AndPos": 312,
+                "And": {
+                  "Number": {
+                    "NumPos": 316,
+                    "NumEnd": 317,
+                    "Literal": "0",
+                    "Base": 10
+                  },
+                  "EndPos": 327,
+                  "Direction": "PRECEDING"
+                }
+              }
+            }
+          }
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "latest_2",
+          "QuoteType": 1,
+          "NamePos": 332,
+          "NameEnd": 340
+        }
+      },
+      {
+        "Expr": {
+          "Function": {
+            "Name": {
+              "Name": "min",
+              "QuoteType": 1,
+              "NamePos": 346,
+              "NameEnd": 349
+            },
+            "Params": {
+              "LeftParenPos": 349,
+              "RightParenPos": 358,
+              "Items": {
+                "ListPos": 350,
+                "ListEnd": 358,
+                "HasDistinct": false,
+                "Items": [
+                  {
+                    "Expr": {
+                      "Name": "latest_1",
+                      "QuoteType": 1,
+                      "NamePos": 350,
+                      "NameEnd": 358
+                    },
+                    "Alias": null
+                  }
+                ]
+              },
+              "ColumnArgList": null
+            }
+          },
+          "OverPos": 360,
+          "OverExpr": {
+            "Name": "w",
+            "QuoteType": 1,
+            "NamePos": 365,
+            "NameEnd": 366
+          }
+        },
+        "Modifiers": [],
+        "Alias": {
+          "Name": "latest_1",
+          "QuoteType": 1,
+          "NamePos": 370,
+          "NameEnd": 378
+        }
+      }
+    ],
+    "From": {
+      "FromPos": 379,
+      "Expr": {
+        "Table": {
+          "TablePos": 384,
+          "TableEnd": 386,
+          "Alias": null,
+          "Expr": {
+            "Database": null,
+            "Table": {
+              "Name": "t0",
+              "QuoteType": 1,
+              "NamePos": 384,
+              "NameEnd": 386
+            }
+          },
+          "HasFinal": false
+        },
+        "StatementEnd": 386,
+        "SampleRatio": null,
+        "HasFinal": false
+      }
+    },
+    "ArrayJoin": null,
+    "Window": {
+      "WindowPos": 387,
+      "EndPos": 508,
+      "Windows": [
+        {
+          "Name": {
+            "Name": "w",
+            "QuoteType": 1,
+            "NamePos": 394,
+            "NameEnd": 395
+          },
+          "AsPos": 396,
+          "Expr": {
+            "LeftParenPos": 399,
+            "RightParenPos": 508,
+            "PartitionBy": {
+              "PartitionPos": 399,
+              "Expr": {
+                "ListPos": 413,
+                "ListEnd": 431,
+                "HasDistinct": false,
+                "Items": [
+                  {
+                    "Expr": {
+                      "Name": "aggregation_target",
+                      "QuoteType": 1,
+                      "NamePos": 413,
+                      "NameEnd": 431
+                    },
+                    "Alias": null
+                  }
+                ]
+              }
+            },
+            "OrderBy": {
+              "OrderPos": 436,
+              "ListEnd": 454,
+              "Items": [
+                {
+                  "OrderPos": 436,
+                  "Expr": {
+                    "Name": "timestamp",
+                    "QuoteType": 1,
+                    "NamePos": 445,
+                    "NameEnd": 454
+                  },
+                  "Alias": null,
+                  "Direction": "DESC",
+                  "Fill": null
+                }
+              ],
+              "Interpolate": null
+            },
+            "Frame": {
+              "FramePos": 460,
+              "Type": "ROWS",
+              "Extend": {
+                "Expr": null,
+                "Between": {
+                  "UnboundedPos": 473,
+                  "UnboundedEnd": 0,
+                  "Direction": "PRECEDING"
+                },
+                "AndPos": 493,
+                "And": {
+                  "Number": {
+                    "NumPos": 497,
+                    "NumEnd": 498,
+                    "Literal": "0",
+                    "Base": 10
+                  },
+                  "EndPos": 508,
+                  "Direction": "PRECEDING"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Prewhere": null,
+    "Where": null,
+    "GroupBy": null,
+    "WithTotal": false,
+    "Having": null,
+    "OrderBy": null,
+    "LimitBy": null,
+    "Limit": null,
+    "Settings": null,
+    "Format": null,
+    "UnionAll": null,
+    "UnionDistinct": null,
+    "Except": null
+  }
+]
