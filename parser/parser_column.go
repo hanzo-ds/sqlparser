@@ -380,7 +380,7 @@ func (p *Parser) isSelectItemTerminatorKeyword() bool {
 
 func (p *Parser) parseColumnExpr(pos Pos) (Expr, error) { //nolint:funlen
 	// Should parse the keyword as an identifier if the keyword is followed by one of comma, `AS`.
-	// For example: `SELECT 1 as interval GROUP BY interval` is a valid syntax in ClickHouse.
+	// For example: `SELECT 1 as interval GROUP BY interval` is a valid syntax in Datastore.
 	if p.matchTokenKind(TokenKindKeyword) && (p.peekTokenKind(TokenKindComma) || p.peekKeyword(KeywordAs)) {
 		return p.parseIdent()
 	}

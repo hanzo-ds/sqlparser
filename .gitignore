@@ -20,4 +20,4 @@
 
 # Binary
 main
-clickhouse-sql-parser
+sqlparser

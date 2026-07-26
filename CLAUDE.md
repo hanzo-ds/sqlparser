@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a ClickHouse SQL parser written in Go that parses ClickHouse SQL into AST (Abstract Syntax Tree) and provides SQL formatting capabilities. The project is inspired by memefish and is designed to work both as a Go library and a CLI tool.
+This is a Datastore SQL parser written in Go that parses Datastore SQL into AST (Abstract Syntax Tree) and provides SQL formatting capabilities. The project is inspired by memefish and is designed to work both as a Go library and a CLI tool.
 
 ## Build and Development Commands
 
@@ -12,7 +12,7 @@ This is a ClickHouse SQL parser written in Go that parses ClickHouse SQL into AS
 ```bash
 make
 # or
-go build -o clickhouse-sql-parser main.go
+go build -o sqlparser main.go
 ```
 
 ### Run tests
@@ -21,10 +21,10 @@ make test
 # Runs tests with coverage, race detection, and compatible flag
 ```
 
-### Run compatible tests (for ClickHouse compatibility)
+### Run compatible tests (for Datastore compatibility)
 ```bash
 make test -compatible
-# Tests against real ClickHouse SQL files from testdata/query/compatible/
+# Tests against real Datastore SQL files from testdata/query/compatible/
 ```
 
 ### Update test golden files
@@ -49,7 +49,7 @@ go test -bench=. -benchmem ./parser
 ### Core Components
 
 **Lexer (`parser/lexer.go`)**
-- Tokenizes ClickHouse SQL input into tokens
+- Tokenizes Datastore SQL input into tokens
 - Handles keywords, identifiers, operators, literals, and comments
 - Supports various token types including strings, numbers, and punctuation
 
@@ -101,8 +101,8 @@ The project uses a comprehensive testing approach:
 - Formatted SQL outputs in `format/` subdirectories
 
 **Compatible Testing**
-- Real ClickHouse SQL files in `testdata/query/compatible/1_stateful/`
-- Run with `-compatible` flag to test against actual ClickHouse queries
+- Real Datastore SQL files in `testdata/query/compatible/1_stateful/`
+- Run with `-compatible` flag to test against actual Datastore queries
 
 **Benchmark Testing**
 - Performance tests in `parser/benchmark_test.go`
@@ -127,7 +127,7 @@ The project uses a comprehensive testing approach:
 
 **AST Node Implementation**
 - All nodes must implement `Pos()`, `End()`, `String()`, and `Accept()` methods
-- String() method should regenerate valid ClickHouse SQL
+- String() method should regenerate valid Datastore SQL
 - Accept() method must call visitor.Enter()/Leave() and visit all child nodes
 
 ** Walking the AST**

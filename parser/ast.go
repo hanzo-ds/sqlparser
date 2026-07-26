@@ -26,7 +26,7 @@ type DDL interface {
 
 type SelectItem struct {
 	Expr Expr
-	// Please refer: https://clickhouse.com/docs/en/sql-reference/statements/select#select-modifiers
+	// Please refer: https://docs.hanzo.ai/datastore
 	Modifiers []*FunctionExpr
 	Alias     *Ident
 }

@@ -313,7 +313,7 @@
   },
   {
     "SelectPos": 222,
-    "StatementEnd": 283,
+    "StatementEnd": 282,
     "With": null,
     "Top": null,
     "HasDistinct": false,
@@ -335,20 +335,20 @@
       "Expr": {
         "Table": {
           "TablePos": 236,
-          "TableEnd": 246,
+          "TableEnd": 245,
           "Alias": null,
           "Expr": {
             "Database": null,
             "Table": {
-              "Name": "clickhouse",
+              "Name": "datastore",
               "QuoteType": 1,
               "NamePos": 236,
-              "NameEnd": 246
+              "NameEnd": 245
             }
           },
           "HasFinal": false
         },
-        "StatementEnd": 246,
+        "StatementEnd": 245,
         "SampleRatio": null,
         "HasFinal": false
       }
@@ -357,30 +357,30 @@
     "Window": null,
     "Prewhere": null,
     "Where": {
-      "WherePos": 247,
+      "WherePos": 246,
       "Expr": {
         "LeftExpr": {
           "Name": "tenant_id",
           "QuoteType": 1,
-          "NamePos": 253,
-          "NameEnd": 262
+          "NamePos": 252,
+          "NameEnd": 261
         },
         "Operation": "=",
         "RightExpr": {
-          "LBracePos": 265,
-          "RBracePos": 283,
+          "LBracePos": 264,
+          "RBracePos": 282,
           "Name": {
             "Name": "tenant_id",
             "QuoteType": 1,
-            "NamePos": 266,
-            "NameEnd": 275
+            "NamePos": 265,
+            "NameEnd": 274
           },
           "Type": {
             "Name": {
               "Name": "String",
               "QuoteType": 1,
-              "NamePos": 277,
-              "NameEnd": 283
+              "NamePos": 276,
+              "NameEnd": 282
             }
           }
         },

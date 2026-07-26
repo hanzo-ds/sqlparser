@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build ./...
+      - run: go vet ./...
+      - run: go test ./...
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+
+  debrand:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: no vendor brand outside the SQL the server itself defines
+        run: |
+          # testdata is excluded, and must stay excluded. Its remaining hits are
+          # the server's own vocabulary, not our branding:
+          #   /clickhouse/tables/...  ReplicatedMergeTree ZooKeeper paths, which are
+          #                           persisted state — our production server stores
+          #                           replicas under exactly this prefix
+          #   SOURCE(CLICKHOUSE(...)) a dictionary source keyword in the server's
+          #                           grammar, which this parser must accept
+          # Renaming either would make the parser reject real SQL.
+          hits=$(grep -ril clickhouse . \
+            --exclude-dir=.git \
+            --exclude-dir=testdata \
+            --exclude=ci.yml || true)
+          if [ -n "$hits" ]; then
+            echo "vendor brand reintroduced in:"; echo "$hits"
+            grep -rin clickhouse $hits | head -50
+            exit 1
+          fi
+          echo "clean"
