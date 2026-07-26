@@ -1,6 +1,6 @@
 
-PROGRAM=clickhouse-sql-parser
-PKG_FILES=`go list ./... | sed -e 's=github.com/AfterShip/clickhouse-sql-parser/=./='`
+PROGRAM=sqlparser
+PKG_FILES=`go list ./... | sed -e 's=github.com/hanzo-ds/sqlparser/=./='`
 
 CCCOLOR="\033[37;1m"
 MAKECOLOR="\033[32;1m"

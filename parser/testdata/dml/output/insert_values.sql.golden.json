@@ -62,7 +62,7 @@
     "Values": [
       {
         "LeftParenPos": 87,
-        "RightParenPos": 168,
+        "RightParenPos": 167,
         "Values": [
           {
             "NumPos": 88,
@@ -72,22 +72,22 @@
           },
           {
             "LiteralPos": 94,
-            "LiteralEnd": 112,
-            "Literal": "Hello, ClickHouse!"
+            "LiteralEnd": 111,
+            "Literal": "Hello, Datastore!"
           },
           {
             "Name": {
               "Name": "now",
               "QuoteType": 1,
-              "NamePos": 147,
-              "NameEnd": 150
+              "NamePos": 146,
+              "NameEnd": 149
             },
             "Params": {
-              "LeftParenPos": 150,
-              "RightParenPos": 151,
+              "LeftParenPos": 149,
+              "RightParenPos": 150,
               "Items": {
-                "ListPos": 151,
-                "ListEnd": 151,
+                "ListPos": 150,
+                "ListEnd": 150,
                 "HasDistinct": false,
                 "Items": []
               },
@@ -95,41 +95,41 @@
             }
           },
           {
-            "NumPos": 160,
-            "NumEnd": 164,
+            "NumPos": 159,
+            "NumEnd": 163,
             "Literal": "-1.0",
             "Base": 10
           }
         ]
       },
       {
-        "LeftParenPos": 175,
-        "RightParenPos": 256,
+        "LeftParenPos": 174,
+        "RightParenPos": 255,
         "Values": [
           {
-            "NumPos": 176,
-            "NumEnd": 179,
+            "NumPos": 175,
+            "NumEnd": 178,
             "Literal": "102",
             "Base": 10
           },
           {
-            "LiteralPos": 182,
-            "LiteralEnd": 212,
+            "LiteralPos": 181,
+            "LiteralEnd": 211,
             "Literal": "Insert a lot of rows per batch"
           },
           {
             "Name": {
               "Name": "yesterday",
               "QuoteType": 1,
-              "NamePos": 235,
-              "NameEnd": 244
+              "NamePos": 234,
+              "NameEnd": 243
             },
             "Params": {
-              "LeftParenPos": 244,
-              "RightParenPos": 245,
+              "LeftParenPos": 243,
+              "RightParenPos": 244,
               "Items": {
-                "ListPos": 245,
-                "ListEnd": 245,
+                "ListPos": 244,
+                "ListEnd": 244,
                 "HasDistinct": false,
                 "Items": []
               },
@@ -137,41 +137,41 @@
             }
           },
           {
-            "NumPos": 248,
-            "NumEnd": 255,
+            "NumPos": 247,
+            "NumEnd": 254,
             "Literal": "1.41421",
             "Base": 10
           }
         ]
       },
       {
-        "LeftParenPos": 263,
-        "RightParenPos": 344,
+        "LeftParenPos": 262,
+        "RightParenPos": 343,
         "Values": [
           {
-            "NumPos": 264,
-            "NumEnd": 267,
+            "NumPos": 263,
+            "NumEnd": 266,
             "Literal": "102",
             "Base": 10
           },
           {
-            "LiteralPos": 270,
-            "LiteralEnd": 320,
+            "LiteralPos": 269,
+            "LiteralEnd": 319,
             "Literal": "Sort your data based on your commonly-used queries"
           },
           {
             "Name": {
               "Name": "today",
               "QuoteType": 1,
-              "NamePos": 323,
-              "NameEnd": 328
+              "NamePos": 322,
+              "NameEnd": 327
             },
             "Params": {
-              "LeftParenPos": 328,
-              "RightParenPos": 329,
+              "LeftParenPos": 327,
+              "RightParenPos": 328,
               "Items": {
-                "ListPos": 329,
-                "ListEnd": 329,
+                "ListPos": 328,
+                "ListEnd": 328,
                 "HasDistinct": false,
                 "Items": []
               },
@@ -179,26 +179,26 @@
             }
           },
           {
-            "NumPos": 336,
-            "NumEnd": 341,
+            "NumPos": 335,
+            "NumEnd": 340,
             "Literal": "2.718",
             "Base": 10
           }
         ]
       },
       {
-        "LeftParenPos": 351,
-        "RightParenPos": 432,
+        "LeftParenPos": 350,
+        "RightParenPos": 431,
         "Values": [
           {
-            "NumPos": 352,
-            "NumEnd": 355,
+            "NumPos": 351,
+            "NumEnd": 354,
             "Literal": "101",
             "Base": 10
           },
           {
-            "LiteralPos": 358,
-            "LiteralEnd": 403,
+            "LiteralPos": 357,
+            "LiteralEnd": 402,
             "Literal": "Granules are the smallest chunks of data read"
           },
           {
@@ -206,15 +206,15 @@
               "Name": {
                 "Name": "now",
                 "QuoteType": 1,
-                "NamePos": 411,
-                "NameEnd": 414
+                "NamePos": 410,
+                "NameEnd": 413
               },
               "Params": {
-                "LeftParenPos": 414,
-                "RightParenPos": 415,
+                "LeftParenPos": 413,
+                "RightParenPos": 414,
                 "Items": {
-                  "ListPos": 415,
-                  "ListEnd": 415,
+                  "ListPos": 414,
+                  "ListEnd": 414,
                   "HasDistinct": false,
                   "Items": []
                 },
@@ -223,8 +223,8 @@
             },
             "Operation": "+",
             "RightExpr": {
-              "NumPos": 419,
-              "NumEnd": 420,
+              "NumPos": 418,
+              "NumEnd": 419,
               "Literal": "5",
               "Base": 10
             },
@@ -232,8 +232,8 @@
             "HasNot": false
           },
           {
-            "NumPos": 424,
-            "NumEnd": 431,
+            "NumPos": 423,
+            "NumEnd": 430,
             "Literal": "3.14159",
             "Base": 10
           }

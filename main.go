@@ -7,12 +7,12 @@ import (
 	"os"
 	"strings"
 
-	clickhouse "github.com/hanzo-ds/sqlparser/parser"
+	"github.com/hanzo-ds/sqlparser/parser"
 )
 
 const VERSION = "0.3.8"
 const help = `
-Usage: clickhouse-sql-parser [YOUR SQL STRING] -f [YOUR SQL FILE] -format
+Usage: sqlparser [YOUR SQL STRING] -f [YOUR SQL FILE] -format
 `
 
 var options struct {
@@ -23,7 +23,7 @@ var options struct {
 }
 
 func init() {
-	flag.BoolVar(&options.format, "format", false, "Beautify print the ClickHouse SQL")
+	flag.BoolVar(&options.format, "format", false, "Beautify print the Datastore SQL")
 	flag.StringVar(&options.file, "f", "", "Parse SQL from file")
 	flag.BoolVar(&options.help, "h", false, "Print help message")
 	flag.BoolVar(&options.version, "v", false, "Print version")
@@ -54,8 +54,8 @@ func main() {
 		}
 		inputBytes = []byte(os.Args[len(os.Args)-1])
 	}
-	parser := clickhouse.NewParser(string(inputBytes))
-	stmts, err := parser.ParseStmts()
+	p := parser.NewParser(string(inputBytes))
+	stmts, err := p.ParseStmts()
 	if err != nil {
 		fmt.Printf("parse statements error: %s\n", err.Error())
 		os.Exit(1)

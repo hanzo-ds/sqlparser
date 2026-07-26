@@ -416,7 +416,7 @@ func (p *Parser) parseRoleSetting(_ Pos) (*RoleSetting, error) {
 			if err != nil {
 				return nil, err
 			}
-			// docs: https://clickhouse.com/docs/en/sql-reference/statements/alter/role
+			// docs: https://docs.hanzo.ai/datastore
 			// the operator "=" was required if the variable name is NOT in
 			// ["MIN", "MAX", "PROFILE"] and value is existed.
 			if value != nil && name.Name != "MIN" && name.Name != "MAX" && name.Name != "PROFILE" && op != TokenKindSingleEQ {

@@ -1,68 +1,67 @@
-# ClickHouse SQL Parser 
-![GitHub CI](https://github.com/AfterShip/clickhouse-sql-parser/actions/workflows/ci.yaml/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/AfterShip/clickhouse-sql-parser)](https://goreportcard.com/report/github.com/AfterShip/clickhouse-sql-parser) [![LICENSE](https://img.shields.io/github/license/AfterShip/clickhouse-sql-parser.svg)](https://github.com/AfterShip/clickhouse-sql-parser/blob/master/LICENSE) [![GoDoc](https://img.shields.io/badge/Godoc-reference-blue.svg)](https://godoc.org/github.com/AfterShip/clickhouse-sql-parser) [![Coverage Status](https://coveralls.io/repos/github/AfterShip/clickhouse-sql-parser/badge.svg?branch=master)](https://coveralls.io/github/AfterShip/clickhouse-sql-parser?branch=master) <a href="https://hellogithub.com/repository/23597949cafa410bba6039ddb8867543" target="_blank"><img src="https://api.hellogithub.com/v1/widgets/recommend.svg?rid=23597949cafa410bba6039ddb8867543&claim_uid=kyCYu1VAKgwD8rE&theme=small" alt="Featured｜HelloGitHub" /></a>
+# Datastore SQL Parser
+[![ci](https://github.com/hanzo-ds/sqlparser/actions/workflows/ci.yml/badge.svg)](https://github.com/hanzo-ds/sqlparser/actions/workflows/ci.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/hanzo-ds/sqlparser.svg)](https://pkg.go.dev/github.com/hanzo-ds/sqlparser)
 
-The goal of this project is to build a ClickHouse SQL parser in Go with the following key features:
+The goal of this project is to build a Datastore SQL parser in Go with the following key features:
 
-- Parse ClickHouse SQL into AST
-- Beautify ClickHouse SQL format
+- Parse Datastore SQL into AST
+- Beautify Datastore SQL format
 
 This project is inspired by [memefish](https://github.com/cloudspannerecosystem/memefish) which is a SQL parser for Spanner in Go.
 ## How to use
 
 You can use it as your Go library or CLI tool, see the following examples:
 
-- Use clickhouse-sql-parser as a Go library
+- Use sqlparser as a Go library
 
 ```Go
 package main
 
 import (
-    clickhouse "github.com/AfterShip/clickhouse-sql-parser/parser"
+    "github.com/hanzo-ds/sqlparser/parser"
 )
 
-query := "SELECT * FROM clickhouse"
-parser := clickhouse.NewParser(query)
+query := "SELECT * FROM events"
+p := parser.NewParser(query)
 // Parse query into AST
-statements, err := parser.ParseStmts()
+statements, err := p.ParseStmts()
 if err != nil {
     return nil, err
 }
 ```
 
-- Install clickhouse-sql-parser as a CLI tool
+- Install sqlparser as a CLI tool
 
 
 On Linux:
 
 ```bash
-$ go install github.com/AfterShip/clickhouse-sql-parser@latest
+$ go install github.com/hanzo-ds/sqlparser@latest
 ```
 
 On macOS:
 
 ```bash
-$ brew install clickhouse-sql-parser
 ```
 
-Parse ClickHouse SQL into AST or beautify ClickHouse SQL format:
+Parse Datastore SQL into AST or beautify Datastore SQL format:
 
 ```bash
 ## Parse query into AST
-$ clickhouse-sql-parser "SELECT * FROM clickhouse WHERE a=100"
+$ sqlparser "SELECT * FROM events WHERE a=100"
 
 ## Beautify query
-$ clickhouse-sql-parser -format "SELECT * FROM clickhouse WHERE a=100"
+$ sqlparser -format "SELECT * FROM events WHERE a=100"
 
 ## Parse query from file
-$ clickhouse-sql-parser -file ./test.sql
+$ sqlparser -file ./test.sql
 ```
 
 - Parsed tree(AST) back into a SQL statement
 
 ```Go
-parser := clickhouse.NewParser("SELECT * FROM clickhouse")
+p := parser.NewParser("SELECT * FROM events")
 // Parse query into AST
-statements, err := parser.ParseStmts()
+statements, err := p.ParseStmts()
 if err != nil {
     return nil, err
 }
@@ -81,17 +80,17 @@ The Walk pattern provides a simple and efficient way to traverse AST nodes. Use 
 
 ```Go
 import (
-    clickhouse "github.com/AfterShip/clickhouse-sql-parser/parser"
+    "github.com/hanzo-ds/sqlparser/parser"
 )
 
-parser := clickhouse.NewParser("SELECT * FROM table WHERE id = 1")
-statements, err := parser.ParseStmts()
+p := parser.NewParser("SELECT * FROM table WHERE id = 1")
+statements, err := p.ParseStmts()
 if err != nil {
     return err
 }
 
 // Walk through all nodes in the AST
-clickhouse.Walk(statements[0], func(node clickhouse.Expr) bool {
+parser.Walk(statements[0], func(node parser.Expr) bool {
     fmt.Printf("Node type: %T\n", node)
     return true // return false to stop traversal for this subtree
 })
@@ -109,16 +108,16 @@ clickhouse.Walk(statements[0], func(node clickhouse.Expr) bool {
 
 Find all table identifiers:
 ```Go
-tables := clickhouse.FindAll(stmt, func(node clickhouse.Expr) bool {
-    _, ok := node.(*clickhouse.TableIdentifier)
+tables := parser.FindAll(stmt, func(node parser.Expr) bool {
+    _, ok := node.(*parser.TableIdentifier)
     return ok
 })
 ```
 
 Find the first WHERE clause:
 ```Go
-whereClause, found := clickhouse.Find(stmt, func(node clickhouse.Expr) bool {
-    _, ok := node.(*clickhouse.WhereClause)
+whereClause, found := parser.Find(stmt, func(node parser.Expr) bool {
+    _, ok := node.(*parser.WhereClause)
     return ok
 })
 ```
@@ -145,7 +144,7 @@ Results
 $ go test -bench=. -benchmem ./parser
 goos: linux
 goarch: amd64
-pkg: github.com/AfterShip/clickhouse-sql-parser/parser
+pkg: github.com/hanzo-ds/sqlparser/parser
 cpu: Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
 BenchmarkParseSQLFiles/access_tuple_with_dot.sql-28                23294             58467 ns/op           13448 B/op        293 allocs/op
 BenchmarkParseSQLFiles/query_with_expr_compare.sql-28              43560             25704 ns/op            6240 B/op        132 allocs/op
@@ -188,7 +187,7 @@ BenchmarkParseComplexQueries/testdata/query/select_with_left_join.sql-28        
 BenchmarkParseComplexQueries/testdata/benchdata/posthog_huge_0.sql-28                                235           6231253 ns/op         1236189 B/op      26696 allocs/op
 BenchmarkParseComplexQueries/testdata/benchdata/posthog_huge_1.sql-28                                279           4438280 ns/op         1043374 B/op      22717 allocs/op
 PASS
-ok      github.com/AfterShip/clickhouse-sql-parser/parser       66.547s
+ok      github.com/hanzo-ds/sqlparser/parser       66.547s
 ```
 
 ## Contact us
