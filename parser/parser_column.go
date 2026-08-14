@@ -877,6 +877,11 @@ func (p *Parser) parseColumnType(_ Pos) (ColumnType, error) { // nolint:funlen
 			switch {
 			case strings.EqualFold(ident.Name, "Nested"):
 				return p.parseNestedType(ident, p.Pos())
+			case strings.EqualFold(ident.Name, "Tuple") && p.namedElementsAhead():
+				// A NAMED tuple is a column list, which is the grammar
+				// parseNestedType already reads. The unnamed form falls through to
+				// parseComplexType below, where a bare list of types belongs.
+				return p.parseNestedType(ident, p.Pos())
 			case strings.EqualFold(ident.Name, "JSON"):
 				return p.parseJSONType(ident, p.Pos())
 			case strings.EqualFold(ident.Name, "QBit"):
@@ -909,6 +914,21 @@ func (p *Parser) parseColumnPropertyType(_ Pos) (Expr, error) {
 	return &PropertyType{
 		Name: ident,
 	}, nil
+}
+
+// namedElementsAhead reports whether the type being parsed names its elements —
+// Tuple(label String, path Array(String)) rather than Tuple(String, Array(String)).
+// ClickHouse writes both, and SHOW CREATE TABLE returns whichever the column was
+// declared with, so a parser that reads only one of them cannot read back a schema
+// the server itself printed.
+//
+// The current token is the first token inside the parens. In the NAMED form that is
+// an element's name and the next token is its type — an identifier. In the unnamed
+// form the first token IS the type, so what follows is a comma, the closing paren,
+// or the type's own parameter list. One token of lookahead separates them.
+func (p *Parser) namedElementsAhead() bool {
+	peek, err := p.lexer.peekToken()
+	return err == nil && peek != nil && peek.Kind == TokenKindIdent
 }
 
 func (p *Parser) parseComplexType(name *Ident, pos Pos) (*ComplexType, error) {
